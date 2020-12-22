@@ -5,7 +5,9 @@ import App from './App.vue'
 import { router } from './router'
 import store from './store'
 import axios from './utils/request'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$axios = axios

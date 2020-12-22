@@ -35,14 +35,14 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="less" scoped>
 .footerBox {
   width: 100%;
   height: 230px;
-  background-color: #233976;
+  background: #3d4348;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,10 +128,10 @@ export default {};
       }
     }
     .footerRt {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
       .scanReservation {
         font-size: 20px;
         font-family: MicrosoftYaHei;

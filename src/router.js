@@ -9,6 +9,11 @@ const routes = [{
   component: resolve => require(['./views/index.vue'], resolve)
 },
 {
+  path: '/text',
+  name: 'text',
+  component: resolve => require(['./views/text.vue'], resolve)
+},
+{
   path: '/qinghai',
   name: 'home',
   component: resolve => require(['./views/home.vue'], resolve),
@@ -26,6 +31,11 @@ const routes = [{
     path: '/qinghai/RecommendedScenicSpots',
     name: 'RecommendedScenicSpots',
     component: resolve => require(['./views/RecommendedScenicSpots/index.vue'], resolve)
+  },
+  {
+    path: '/qinghai/PurchaseDetails',
+    name: 'PurchaseDetails',
+    component: resolve => require(['./views/PurchaseDetails/PurchaseDetails.vue'], resolve)
   },
   {
     path: '/qinghai/AllScenicSpots',

@@ -16,7 +16,16 @@
             :key="i"
             @click="handleTab(item)"
           >
-            {{ item }}
+            <div class="titleIcon">
+              <img src="../assets/images/标题左.png" alt="">
+            </div>
+            <div class="title">
+              {{ item }}
+            </div>
+
+            <div class="titleIcon">
+              <img src="../assets/images/标题右.png" alt="">
+            </div>
           </div>
         </div>
         <div class="navRight">
@@ -37,7 +46,7 @@
 </template>
 
 <script>
-import foot from '../components/footer';
+import foot from '../components/footer'
 export default {
   name: 'home',
   components: {
@@ -45,7 +54,15 @@ export default {
   },
   data () {
     return {
-      navList: ['景区资讯', '推荐景区', '全部景区', '团队预订', '年卡办理'],
+      navList: [
+        '景区资讯',
+        '推荐景区',
+        '全部景区',
+        '活动日历',
+        '旅游攻略',
+        '团队预订',
+        '年卡办理'
+      ],
       searchText: '',
       currentTab: ''
     }
@@ -53,20 +70,20 @@ export default {
   methods: {
     handleTab (item) {
       if (item !== this.currentTab) {
-        if (item == '景区资讯') {
+        if (item === '景区资讯') {
           this.$router.push('/qinghai/scenicSpotInfo')
         }
-        if (item == '推荐景区') {
+        if (item === '推荐景区') {
           this.$router.push('/qinghai/RecommendedScenicSpots')
         }
-        if (item == '全部景区') {
+        if (item === '全部景区') {
           this.$router.push('/qinghai/AllScenicSpots')
         }
-        if (item == '团队预订') {
+        if (item === '团队预订') {
           this.$router.push('/qinghai/TeamBook')
         }
-        if (item == '年卡办理') {
-          this.$router.push('/qinghai/AllScenicSpots')
+        if (item === '年卡办理') {
+          this.$router.push('/qinghai/AnnualCardProcess')
         }
       }
       this.currentTab = item
@@ -78,7 +95,7 @@ export default {
 <style lang="less" scoped>
 .homeBox {
   width: 100%;
-  background: #ffffff;
+  background: #f4f4f4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -86,16 +103,19 @@ export default {
   .bannerBox {
     width: 100%;
     height: 60px;
+    z-index: 100;
     position: fixed;
     top: 0;
-    background: #243979;
+    background: linear-gradient(90deg, #369aff 0%, #167de5 100%);
+    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-start;
     justify-content: center;
     .navBox {
-      width: 1200px;
+      width: 100%;
       height: 60px;
-      // border: 1px solid green;
+      padding-left: 43px;
+      padding-right: 41px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -114,8 +134,8 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-left: 19%;
-        padding-right: 9%;
+        padding-left: 17%;
+        padding-right: 7%;
         box-sizing: border-box;
         .navItem {
           width: 58px;
@@ -128,9 +148,11 @@ export default {
           box-sizing: border-box;
           padding-bottom: 5px;
           cursor: pointer;
+          .titleIcon {
+           visibility: hidden;
+          }
         }
         .navItemActive {
-          width: 58px;
           margin-right: 5px;
           margin-left: 5px;
           font-size: 14px;
@@ -140,16 +162,21 @@ export default {
           box-sizing: border-box;
           padding-bottom: 5px;
           cursor: pointer;
-        }
-        .navItemActive::after {
-          content: "";
-          position: absolute;
-          top: 100%;
-          left: 45%;
-          width: 4px;
-          height: 4px;
-          background-color: #fff;
-          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .title {
+            margin-left: 5px;
+            margin-right: 5px;
+          }
+          .titleIcon {
+            width: 17px;
+            height: 13px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
         }
       }
       .navRight {
@@ -162,12 +189,18 @@ export default {
         .el-input {
           border: 1px solid #ffffff;
           background-color: transparent;
-          width: 120px;
+          width: 115px;
         }
         /deep/ .el-input__inner {
           border: none !important;
           color: #ffffff;
           background-color: transparent !important;
+          width: 115px;
+          height: 26px;
+        }
+        /deep/ .el-input__icon {
+          height: 26px !important;
+          line-height: 26px !important;
         }
         .navRightItem {
           width: 29px;
@@ -182,7 +215,7 @@ export default {
   .scenicSpotContent {
     margin-top: 62px;
     width: 100%;
-    padding-top: 27px;
+    // padding-top: 27px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
