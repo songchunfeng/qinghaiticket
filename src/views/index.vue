@@ -32,17 +32,19 @@
     <div class="bodyBox">
       <!-- 门票预定 -->
       <div class="TicketReservation">
-        <div
+        <!-- <div
           class="ticketSign"
           @mouseenter="changeImageSrc(1)"
           @mouseleave="LeaveImageSrc(1)"
         >
           <img :src="reserveImg" alt="" />
+        </div> -->
+        <div class="scenicAreaSwiper">
+          <swiper></swiper>
         </div>
-        <div class="scenicAreaSwiper"></div>
       </div>
       <!-- 推荐活动 -->
-      <div class="recommendBox">
+      <!-- <div class="recommendBox">
         <div class="lfRecommend">
           <div class="lfRecommendTop">
             <div class="recommendImg">
@@ -67,7 +69,7 @@
           </div>
           <div class="remind">关于游客购票相关事项友情提醒</div>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- /中部 -->
 
@@ -81,10 +83,12 @@
 
 <script>
 import foot from '../components/footer'
+import swiper from './swiper/index'
 export default {
   name: 'home',
   components: {
-    foot
+    foot,
+    swiper
   },
   data () {
     return {
@@ -170,9 +174,6 @@ export default {
   width: (@w / @baseWidth) * 100vw;
 }
 
-.heightfix(@h) {
-  height: (@h / @baseHeight) * 100vh;
-}
 // @aa:.pxfix(732);
 .home {
   width: 100%;
@@ -271,7 +272,8 @@ export default {
     margin-top: 48px;
     .TicketReservation {
       width: 100%;
-      height: 100%;
+      // height: 100%;
+      height: 586px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -301,7 +303,6 @@ export default {
           justify-content: center;
           .recommendImg {
             .pxfix(583);
-            .heightfix(460);
             overflow: hidden;
             position: relative;
             .shadeBox {
@@ -323,27 +324,22 @@ export default {
           }
           .recommendSign {
             .pxfix(568);
-            .heightfix(460);
             img {
               width: 100%;
-              .heightfix(460);
             }
           }
         }
         .lfRecommendBottom {
           width: 100%;
-          .heightfix(461);
           overflow: hidden;
           img {
             width: 100%;
-            .heightfix(461);
             transition: all 0.8s;
           }
         }
       }
       .rtRecommend {
         .pxfix(732);
-        .heightfix(921);
         background: #369aff;
         padding-left: 9%;
         padding-right: 9%;
@@ -354,7 +350,6 @@ export default {
         justify-content: flex-start;
         .rtReLogo {
           .pxfix(384);
-          .heightfix(64);
           margin-top: 5.9%;
           img {
             width: 100%;
