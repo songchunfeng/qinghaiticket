@@ -187,9 +187,11 @@ export default {
     justify-content: center;
     position: relative;
     .bannerBgImg {
+      width: 100vw;
+      height: 100vh;
       img {
         width: 100%;
-        height: 100vh;
+        height: 100%;
       }
     }
     .navBox {
@@ -295,13 +297,17 @@ export default {
       justify-content: space-between;
       margin-top: 35px;
       .lfRecommend {
+        width: 60%;
+        .heightfix(920);
         .lfRecommendTop {
+          width: 100%;
+          height: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           .recommendImg {
             .pxfix(583);
-            .heightfix(460);
+            height: 100%;
             overflow: hidden;
             position: relative;
             .shadeBox {
@@ -316,27 +322,27 @@ export default {
             }
             img {
               width: 100%;
-              height: 460px;
+              height: 100%;
               // height: width*(460/568);
               transition: all 0.8s;
             }
           }
           .recommendSign {
             .pxfix(568);
-            .heightfix(460);
+            height: 100%;
             img {
               width: 100%;
-              .heightfix(460);
+              height: 100%;
             }
           }
         }
         .lfRecommendBottom {
           width: 100%;
-          .heightfix(461);
+          height: 50%;
           overflow: hidden;
           img {
             width: 100%;
-            .heightfix(461);
+            height: 100%;
             transition: all 0.8s;
           }
         }

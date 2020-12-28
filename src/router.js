@@ -28,6 +28,11 @@ const routes = [{
     component: resolve => require(['./views/scenicSpotInfo/InformationDetails.vue'], resolve)
   },
   {
+    path: '/qinghai/activityCalendar',
+    name: 'activityCalendar',
+    component: resolve => require(['./views/activityCalendar/index.vue'], resolve)
+  },
+  {
     path: '/qinghai/RecommendedScenicSpots',
     name: 'RecommendedScenicSpots',
     component: resolve => require(['./views/RecommendedScenicSpots/index.vue'], resolve)

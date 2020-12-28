@@ -79,6 +79,9 @@ export default {
         if (item === '全部景区') {
           this.$router.push('/qinghai/AllScenicSpots')
         }
+        if (item === '活动日历') {
+          this.$router.push('/qinghai/activityCalendar')
+        }
         if (item === '团队预订') {
           this.$router.push('/qinghai/TeamBook')
         }
