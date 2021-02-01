@@ -7,6 +7,9 @@ import store from './store'
 import axios from './utils/request'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+// import style (>= Swiper 6.x)
+import 'swiper/swiper-bundle.css'
+
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 Vue.use(ElementUI)

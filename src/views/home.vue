@@ -17,14 +17,14 @@
             @click="handleTab(item)"
           >
             <div class="titleIcon">
-              <img src="../assets/images/标题左.png" alt="">
+              <img src="../assets/images/标题左.png" alt="" />
             </div>
             <div class="title">
               {{ item }}
             </div>
 
             <div class="titleIcon">
-              <img src="../assets/images/标题右.png" alt="">
+              <img src="../assets/images/标题右.png" alt="" />
             </div>
           </div>
         </div>
@@ -67,9 +67,16 @@ export default {
       currentTab: ''
     }
   },
+  created () {
+    this.getCurrentTab()
+  },
   methods: {
+    getCurrentTab () {
+      this.currentTab = window.sessionStorage.getItem('Tab')
+    },
     handleTab (item) {
       if (item !== this.currentTab) {
+        window.sessionStorage.setItem('Tab', item)
         if (item === '景区资讯') {
           this.$router.push('/qinghai/scenicSpotInfo')
         }
@@ -82,11 +89,14 @@ export default {
         if (item === '活动日历') {
           this.$router.push('/qinghai/activityCalendar')
         }
+        if (item === '旅游攻略') {
+          this.$router.push('/qinghai/travelGuides')
+        }
         if (item === '团队预订') {
-          this.$router.push('/qinghai/TeamBook')
+          this.$router.push('/login/team')
         }
         if (item === '年卡办理') {
-          this.$router.push('/qinghai/AnnualCardProcess')
+          this.$router.push('/qinghai/AnnualCardProcess/openCardInformation')
         }
       }
       this.currentTab = item
@@ -152,7 +162,7 @@ export default {
           padding-bottom: 5px;
           cursor: pointer;
           .titleIcon {
-           visibility: hidden;
+            visibility: hidden;
           }
         }
         .navItemActive {

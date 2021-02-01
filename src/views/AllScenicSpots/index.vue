@@ -128,7 +128,7 @@
               <div class="purchasePrice">
                 ￥<span style="font-size: 18px">50</span>起
               </div>
-              <div class="purchaseBtn">购买</div>
+              <div class="purchaseBtn" @click="toPurchaseDetails">购买</div>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@
               <div class="purchasePrice">
                 <span style="font-size: 18px">50</span>
               </div>
-              <div class="purchaseBtn">购买</div>
+              <div class="purchaseBtn" @click="toPurchaseDetails">购买</div>
             </div>
           </div>
         </div>
@@ -176,7 +176,7 @@
               <div class="purchasePrice">
                 <span style="font-size: 18px">50</span>
               </div>
-              <div class="purchaseBtn">购买</div>
+              <div class="purchaseBtn" @click="toPurchaseDetails">购买</div>
             </div>
           </div>
         </div>
@@ -211,6 +211,9 @@ export default {
     },
     handleSort (sort) {
       this.currentSort = sort
+    },
+    toPurchaseDetails () {
+      this.$router.push('/qinghai/PurchaseDetails')
     }
   }
 }
@@ -421,6 +424,7 @@ export default {
               font-size: 14px;
               font-family: MicrosoftYaHei;
               color: #ffffff;
+              cursor: pointer;
             }
           }
         }
@@ -446,6 +450,9 @@ export default {
     }
     /deep/ li {
       background-color: transparent!important;
+    }
+    /deep/ .el-pagination .btn-prev {
+        background-color: transparent !important;
     }
   }
 }

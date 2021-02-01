@@ -273,6 +273,7 @@ export default {
               font-size: 14px;
               font-family: MicrosoftYaHei;
               color: #ffffff;
+              cursor: pointer;
             }
           }
         }

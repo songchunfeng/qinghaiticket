@@ -10,13 +10,14 @@
           <img src="../assets/images/大美青海.png" alt="" />
         </div>
         <div class="nav">
-          <div class="navItem" @click="toScenicSpotInfo">景区资讯</div>
-          <div class="navItem" @click="toRecommendedScenicSpot">推荐景区</div>
-          <div class="navItem" @click="toAllScenicSpot">全部景区</div>
-          <div class="navItem">活动日历</div>
-          <div class="navItem">旅游攻略</div>
-          <div class="navItem" @click="toTeamBook">团队预订</div>
-          <div class="navItem" @click="toAnnualCard">年卡办理</div>
+          <div
+            class="navItem"
+            v-for="(item, i) in navList"
+            :key="i"
+            @click="handleTab(item)"
+          >
+            {{ item }}
+          </div>
         </div>
         <div class="navRight">
           <el-input suffix-icon="el-icon-search" v-model="searchText">
@@ -32,42 +33,18 @@
     <div class="bodyBox">
       <!-- 门票预定 -->
       <div class="TicketReservation">
-        <div
+        <!-- <div
           class="ticketSign"
           @mouseenter="changeImageSrc(1)"
           @mouseleave="LeaveImageSrc(1)"
         >
           <img :src="reserveImg" alt="" />
+        </div> -->
+        <div class="scenicAreaSwiper">
+          <swiper></swiper>
         </div>
-        <div class="scenicAreaSwiper"></div>
       </div>
       <!-- 推荐活动 -->
-      <div class="recommendBox">
-        <div class="lfRecommend">
-          <div class="lfRecommendTop">
-            <div class="recommendImg">
-              <img class="img" src="../assets/images/封面.jpeg" alt="" />
-              <div class="shadeBox"></div>
-            </div>
-            <div
-              class="recommendSign"
-              @mouseenter="changeImageSrc(2)"
-              @mouseleave="LeaveImageSrc(2)"
-            >
-              <img :src="recommendImg" alt="" />
-            </div>
-          </div>
-          <div class="lfRecommendBottom">
-            <img class="img" src="../assets/images/风景图.jpg" alt="" />
-          </div>
-        </div>
-        <div class="rtRecommend">
-          <div class="rtReLogo">
-            <img src="../assets/images/景区资讯.png" alt="" />
-          </div>
-          <div class="remind">关于游客购票相关事项友情提醒</div>
-        </div>
-      </div>
     </div>
     <!-- /中部 -->
 
@@ -81,13 +58,24 @@
 
 <script>
 import foot from '../components/footer'
+import swiper from './swiper/index'
 export default {
   name: 'home',
   components: {
-    foot
+    foot,
+    swiper
   },
   data () {
     return {
+      navList: [
+        '景区资讯',
+        '推荐景区',
+        '全部景区',
+        '活动日历',
+        '旅游攻略',
+        '团队预订',
+        '年卡办理'
+      ],
       searchText: '',
       activeA: '',
       activeB: '',
@@ -143,37 +131,38 @@ export default {
       this.activeD = ''
       this.activeE = ''
     },
-    toScenicSpotInfo () {
-      this.$router.push('/qinghai/scenicSpotInfo')
-    },
-    toRecommendedScenicSpot () {
-      this.$router.push('/qinghai/RecommendedScenicSpots')
-    },
-    toAllScenicSpot () {
-      this.$router.push('/qinghai/AllScenicSpots')
-    },
-    toTeamBook () {
-      this.$router.push('/qinghai/TeamBook')
-    },
-    toAnnualCard () {
-      this.$router.push('/qinghai/AllScenicSpots')
+    handleTab (item) {
+      if (item !== this.currentTab) {
+        window.sessionStorage.setItem('Tab', item)
+        if (item === '景区资讯') {
+          this.$router.push('/qinghai/scenicSpotInfo')
+        }
+        if (item === '推荐景区') {
+          this.$router.push('/qinghai/RecommendedScenicSpots')
+        }
+        if (item === '全部景区') {
+          this.$router.push('/qinghai/AllScenicSpots')
+        }
+        if (item === '活动日历') {
+          this.$router.push('/qinghai/activityCalendar')
+        }
+        if (item === '旅游攻略') {
+          this.$router.push('/qinghai/travelGuides')
+        }
+        if (item === '团队预订') {
+          this.$router.push('/login/team')
+        }
+        if (item === '年卡办理') {
+          this.$router.push('/qinghai/AnnualCardProcess/openCardInformation')
+        }
+      }
+      this.currentTab = item
     }
   }
 }
 </script>
 
 <style lang='less' scoped>
-@baseWidth: 1920px;
-@baseHeight: 1080px;
-
-.pxfix(@w) {
-  width: (@w / @baseWidth) * 100vw;
-}
-
-.heightfix(@h) {
-  height: (@h / @baseHeight) * 100vh;
-}
-// @aa:.pxfix(732);
 .home {
   width: 100%;
   background-color: #ffffff;
@@ -204,7 +193,6 @@ export default {
       padding-left: 40px;
       padding-right: 40px;
       box-sizing: border-box;
-      // border: 1px solid green;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -273,7 +261,8 @@ export default {
     margin-top: 48px;
     .TicketReservation {
       width: 100%;
-      height: 100%;
+      // height: 100%;
+      height: 586px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -287,92 +276,6 @@ export default {
         width: 75%;
         height: 100%;
         overflow: auto;
-      }
-    }
-    .recommendBox {
-      width: 100%;
-      // height: 100%;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-top: 35px;
-      .lfRecommend {
-        width: 60%;
-        .heightfix(920);
-        .lfRecommendTop {
-          width: 100%;
-          height: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          .recommendImg {
-            .pxfix(583);
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-            .shadeBox {
-              height: 100%;
-              width: 17.8%;
-              background: #ffb455;
-              opacity: 0.6;
-              position: absolute;
-              right: 0;
-              top: 0;
-              z-index: 100;
-            }
-            img {
-              width: 100%;
-              height: 100%;
-              // height: width*(460/568);
-              transition: all 0.8s;
-            }
-          }
-          .recommendSign {
-            .pxfix(568);
-            height: 100%;
-            img {
-              width: 100%;
-              height: 100%;
-            }
-          }
-        }
-        .lfRecommendBottom {
-          width: 100%;
-          height: 50%;
-          overflow: hidden;
-          img {
-            width: 100%;
-            height: 100%;
-            transition: all 0.8s;
-          }
-        }
-      }
-      .rtRecommend {
-        .pxfix(732);
-        .heightfix(921);
-        background: #369aff;
-        padding-left: 9%;
-        padding-right: 9%;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        .rtReLogo {
-          .pxfix(384);
-          .heightfix(64);
-          margin-top: 5.9%;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-        .remind {
-          margin-top: 3.5%;
-          font-size: 28px;
-          font-family: MicrosoftYaHeiSemibold;
-          color: #ffffff;
-        }
       }
     }
   }

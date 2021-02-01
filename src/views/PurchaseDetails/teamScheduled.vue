@@ -1,5 +1,5 @@
 <template>
-  <div class="PurchaseDetails">
+  <div class="teamScheduled">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/qinghai/AllScenicSpots' }"
@@ -57,23 +57,36 @@
           <el-col :span="6"><div class="titleName">门票价格</div></el-col>
           <el-col :span="6"><div class="titleName">门票数量</div></el-col>
         </el-row>
-        <el-row class="ticketItem" type="flex" align="middle">
+        <el-row class="ticketItem">
           <el-col :span="12"><div class="ticketInfo">成人入园通票</div></el-col>
           <el-col :span="6"><div class="ticketInfo">¥ 50.00</div></el-col>
           <el-col :span="6">
-            <div class="buyBtn" @click="toBuy">立即购买</div>
+            <el-input-number
+              v-model="num"
+              :min="1"
+              :max="10"
+              size="small"
+              label="描述文字"
+            ></el-input-number>
           </el-col>
         </el-row>
-        <el-row class="ticketItem" type="flex" align="middle">
+        <el-row class="ticketItem">
           <el-col :span="12"
             ><div class="ticketInfo">学生&儿童入园通票</div></el-col
           >
           <el-col :span="6"><div class="ticketInfo">¥ 25.00</div></el-col>
           <el-col :span="6">
-            <div class="buyBtn" @click="toBuy">立即购买</div>
+            <el-input-number
+              v-model="num"
+              :min="1"
+              :max="10"
+              size="small"
+              label="描述文字"
+            ></el-input-number>
           </el-col>
         </el-row>
       </div>
+      <div class="buyRow"><div class="buyBtn" @click="toTeamReservation">购买</div></div>
     </div>
     <div class="scenicSpotInstructions">
       <div class="tabBox">
@@ -82,10 +95,10 @@
             ><reservationInstru></reservationInstru
           ></el-tab-pane>
           <el-tab-pane label="景区详情" name="second">
-            <scenicSpotsInfo></scenicSpotsInfo>
+              <scenicSpotsInfo></scenicSpotsInfo>
           </el-tab-pane>
           <el-tab-pane label="交通指南" name="third">
-            <trafficInfo></trafficInfo>
+              <trafficInfo></trafficInfo>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -98,7 +111,7 @@ import reservationInstru from './reservationInstru'
 import scenicSpotsInfo from './scenicSpotsInfo'
 import trafficInfo from './trafficInfo'
 export default {
-  name: 'PurchaseDetails',
+  name: 'teamScheduled',
   components: {
     reservationInstru,
     scenicSpotsInfo,
@@ -106,6 +119,7 @@ export default {
   },
   data () {
     return {
+      num: 0,
       form: {
         date: '',
         time: ''
@@ -114,15 +128,18 @@ export default {
     }
   },
   methods: {
-    toBuy () {
-      this.$router.push('/qinghai/individualPurchase')
+    handleClick (tab, event) {
+      console.log(tab, event)
+    },
+    toTeamReservation () {
+      this.$router.push('/qinghai/teamReservation')
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.PurchaseDetails {
+.teamScheduled {
   width: 1200px;
   background: #f4f4f4;
   padding-top: 27px;
@@ -254,18 +271,26 @@ export default {
           font-family: MicrosoftYaHei;
           color: #333333;
         }
-        .buyBtn {
-          width: 80px;
-          height: 34px;
-          background: linear-gradient(270deg, #297dfa 0%, #369aff 100%);
-          font-size: 14px;
-          font-family: MicrosoftYaHei;
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-        }
+      }
+    }
+    .buyRow {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .buyBtn {
+        width: 120px;
+        height: 46px;
+        background: linear-gradient(270deg, #297dfa 0%, #369aff 100%);
+        border-radius: 2px;
+        font-size: 15px;
+        font-family: MicrosoftYaHei;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
       }
     }
   }
